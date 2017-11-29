@@ -1,0 +1,38 @@
+{
+  "extends": "standard",
+  "rules": {
+    "no-mixed-operators": 0,
+    "class-methods-use-this": 0,
+    "comma-dangle": 0,
+    "semi": [2, "always"],
+    "semi-style": 1,
+    "space-before-blocks": 0,
+    "func-names": 0,
+    "import/extensions": 0,
+    "import/imports-first": 0,
+    "import/newline-after-import": 0,
+    "import/no-dynamic-require": 0,
+    "import/no-extraneous-dependencies": 0,
+    "import/no-named-as-default": 0,
+    "import/no-unresolved": 2,
+    "import/no-webpack-loader-syntax": 0,
+    "import/prefer-default-export": 0,
+    "indent": [
+      2,
+      2,
+      {
+        "SwitchCase": 1
+      }
+    ],
+    "linebreak-style": 0,
+    "max-len": 0,
+    "newline-per-chained-call": 0,
+    "no-confusing-arrow": 0,
+    "no-underscore-dangle": 0,
+    "no-console": 1,
+    "no-return-assign": 0,
+    "no-use-before-define": 0,
+    "prefer-template": 2,
+    "require-yield": 0
+  }
+}
