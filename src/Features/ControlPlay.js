@@ -9,6 +9,8 @@ export default class ControlPlay {
     this.state = {
       playBtn: 'pause',
     };
+    this.originalState = {...this.state};
+    this.playBtn = this.controlParent.querySelector('#play-pause');
   }
 
   init () {
@@ -16,8 +18,7 @@ export default class ControlPlay {
   }
 
   eventHandlers () {
-    const PlayBtn = this.controlParent.querySelector('#play-pause');
-    PlayBtn.addEventListener('click', (e) => {
+    this.PlayBtn.addEventListener('click', (e) => {
       if (this.state.playBtn === 'pause') {
         this.events.publish('play');
         this.state.playBtn = 'play';
@@ -29,7 +30,8 @@ export default class ControlPlay {
   }
 
   destroy () {
-
+    this.PlayBtn.removeEventListener('click');
+    this.state = {...this.originalState};
   }
 
   render () {
