@@ -11,7 +11,6 @@ export default class Player {
       status: 'pause',
       time: 0,
       duration: 0,
-      timeleft: 0,
       progress: 0,
     };
     /* TODO: Move me to higher level */
@@ -43,6 +42,8 @@ export default class Player {
       this.state.time = this.player.duration * (value / 100);
       this.player.currentTime = this.state.time;
     });
+
+    this.player.ontimeupdate = () => this.state.time = this.player.currentTime;
 
     setTimeout(() => {
       this.state.duration = this.player.duration;
