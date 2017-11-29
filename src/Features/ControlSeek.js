@@ -10,11 +10,29 @@ export default class ControlSeek {
   }
 
   init () {
+    this.seekBar = this.controlParent.querySelector('.es6-player__seekbar');
+    this.eventHandlers();
+  }
 
+  eventHandlers () {
+    this.seekBar.addEventListener('change', () => {
+      this.events.publish('seek', {value: this.seekBar.value});
+    });
+
+    this.events.on('videoMeta', ({state, duration}) => {
+      if (duration) {
+        const minutes = Math.floor(duration / 60);
+        const seconds = Math.floor(duration - minutes * 60);
+        const durationDisplay = `${minutes}:${seconds}`;
+        console.log(durationDisplay);
+      }
+    });
+
+    console.log('seek handlers called');
   }
 
   destroy () {
-
+    this.seekBar.removeEventListener('change');
   }
 
   render () {
