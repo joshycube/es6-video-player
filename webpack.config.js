@@ -2,14 +2,13 @@
 
 var path = require('path');
 var webpack = require('webpack');
-var ExtractTextPlugin = require("extract-text-webpack-plugin");
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var styleLintPlugin = require('stylelint-webpack-plugin');
 
 require('es6-promise').polyfill();
 
 module.exports = {
-  entry: './src/main.js',
-
+  entry: ['babel-polyfill', './src/main.js'],
   output: {
     path: __dirname,
     filename: 'js/app.js'
@@ -31,6 +30,19 @@ module.exports = {
   ],
 
   module: {
+    loaders: [
+      {
+        loader: 'babel-loader',
+        include: [
+          path.resolve(__dirname, 'src'),
+        ],
+        test: /\.js?$/,
+        query: {
+          plugins: ['transform-runtime'],
+          presets: ['es2015', 'stage-2'],
+        }
+      }
+    ],
     rules: [
       {
         test: /\.js$/,
