@@ -7,31 +7,45 @@ export default class Player {
   init (configObject) {
     this.events = Feature.initiate(configObject);
     this.player = document.querySelector(configObject.videoSelector);
-    setTimeout(() => this.eventHandlers(), 2000);
-    this.state = {
+    this.stateObj = {
+      status: 'pause',
       time: 0,
+      duration: 0,
+      timeleft: 0,
+      progress: 0,
     };
+    /* TODO: Move me to higher level */
+    const handler = function (context) {
+      return {
+        set (target, key, value) {
+          target[key] = value;
+          context.events.publish(`stateChange_${key}`, {key, value});
+          return true;
+        }
+      };
+    };
+    this.state = new Proxy(this.stateObj, handler(this));
+    this.eventHandlers();
   }
 
   eventHandlers () {
     this.events.on('play', () => {
       this.player.play();
+      this.state.status = 'play';
     });
 
     this.events.on('pause', () => {
       this.player.pause();
+      this.state.status = 'pause';
     });
 
     this.events.on('seek', ({value}) => {
       this.state.time = this.player.duration * (value / 100);
       this.player.currentTime = this.state.time;
     });
-    console.log('player events called');
-    this.events.publish('videoMeta',
-      {
-        readyState: this.player.readyState,
-        duration: this.player.duration,
-      }
-    );
+
+    setTimeout(() => {
+      this.state.duration = this.player.duration;
+    }, 1000);
   }
 };

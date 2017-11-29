@@ -6,7 +6,6 @@ export default class ControlSeek {
     this.className = className;
     this.video = document.getElementById(config.videoSelector);
     this.controlParent = document.querySelector(`${config.parentSelector} ${config.controlSelector}`);
-    this.state = {};
   }
 
   init () {
@@ -19,16 +18,15 @@ export default class ControlSeek {
       this.events.publish('seek', {value: this.seekBar.value});
     });
 
-    this.events.on('videoMeta', ({state, duration}) => {
-      if (duration) {
-        const minutes = Math.floor(duration / 60);
-        const seconds = Math.floor(duration - minutes * 60);
-        const durationDisplay = `${minutes}:${seconds}`;
-        console.log(durationDisplay);
-      }
+    this.events.on('stateChange_duration', ({key, value}) => {
+      const minutes = Math.floor(value / 60);
+      const seconds = Math.floor(value - minutes * 60);
+      const durationDisplay = `${minutes}:${seconds}`;
+      this.controlParent.querySelector('.es6-player__currenttime').innerHTML = durationDisplay;
     });
 
-    console.log('seek handlers called');
+    this.events.on('stateChange_time', ({key, value}) => {
+    });
   }
 
   destroy () {

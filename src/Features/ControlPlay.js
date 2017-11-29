@@ -21,10 +21,21 @@ export default class ControlPlay {
     this.playBtn.addEventListener('click', (e) => {
       if (this.state.playBtn === 'pause') {
         this.events.publish('play');
-        this.state.playBtn = 'play';
       } else {
         this.events.publish('pause');
-        this.state.playBtn = 'pause';
+      }
+    });
+
+    this.events.on('stateChange_status', ({key, value}) => {
+      switch (value) {
+        case 'play':
+          this.state.playBtn = 'play';
+          break;
+        case 'pause':
+          this.state.playBtn = 'pause';
+          break;
+        default:
+          this.state.playBtn = 'pause';
       }
     });
   }
