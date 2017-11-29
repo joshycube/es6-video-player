@@ -41,8 +41,11 @@ export default class Features {
       if (Features.features[feature.name].prototype.hasOwnProperty('render')) {
         instance.render();
       }
-      instance.init();
+      setTimeout(() => {
+        instance.init();
+      }, 1000);
     });
+    return events;
   }
   /* TODO: Implement start()  */
   /* TODO: Implement stop()  */
