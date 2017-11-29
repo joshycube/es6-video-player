@@ -7,18 +7,18 @@ export default class ControlPlay {
     this.video = document.getElementById(config.videoSelector);
     this.controlParent = document.querySelector(`${config.parentSelector} ${config.controlSelector}`);
     this.state = {
-      playBtn: 'pause',
+      playBtn: 'pause'
     };
     this.originalState = {...this.state};
-    this.playBtn = this.controlParent.querySelector('#play-pause');
   }
 
   init () {
+    this.playBtn = this.controlParent.querySelector('#play-pause');
     this.eventHandlers();
   }
 
   eventHandlers () {
-    this.PlayBtn.addEventListener('click', (e) => {
+    this.playBtn.addEventListener('click', (e) => {
       if (this.state.playBtn === 'pause') {
         this.events.publish('play');
         this.state.playBtn = 'play';
@@ -30,7 +30,7 @@ export default class ControlPlay {
   }
 
   destroy () {
-    this.PlayBtn.removeEventListener('click');
+    this.playBtn.removeEventListener('click');
     this.state = {...this.originalState};
   }
 
