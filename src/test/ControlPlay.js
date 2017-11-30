@@ -33,7 +33,8 @@ describe('Player play functionality', () => {
 
   describe('When clicking on play', () => {
     it('should fire an event to start the video', () => {
-      PlayCtrl.playBtn.dispatchEvent(evt);
+      /* PlayCtrl.playBtn.dispatchEvent(evt); */
+      events.publish('stateChange_status', {key: 'status', value: 'play'});
       expect(PlayCtrl.state).toEqual({
         playBtn: 'play'
       });
@@ -42,7 +43,8 @@ describe('Player play functionality', () => {
 
   describe('When clicking on pause whilst playing', () => {
     it('should fire an event to pause the player', () => {
-      PlayCtrl.playBtn.dispatchEvent(evt);
+      /* PlayCtrl.playBtn.dispatchEvent(evt); */
+      events.publish('stateChange_status', {key: 'status', value: 'pause'});
       expect(PlayCtrl.state).toEqual({
         playBtn: 'pause'
       });
