@@ -16,8 +16,10 @@
 - Stylelint
 
 ## Further development
-- Webpack build (uglify and tree shaking)
 - Volume control
+- Controls show/hide (visibility)
 - Fix range reset bug or add custom slider for seekbar
 - Preloader
+
+- Webpack build (uglify and tree shaking)
 - Components state management to be moved in to Features core
