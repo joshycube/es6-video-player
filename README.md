@@ -14,3 +14,10 @@
 - PostCSS
 - Eslint
 - Stylelint
+
+## Further development
+- Webpack build (uglify and tree shaking)
+- Volume control
+- Fix range reset bug or add custom slider for seekbar
+- Preloader
+- Components state management to be moved in to Features core
