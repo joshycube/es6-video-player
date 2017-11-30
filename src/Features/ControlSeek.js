@@ -13,9 +13,19 @@ export default class ControlSeek {
     this.eventHandlers();
   }
 
-  calculateTime (value) {
-    const minutes = Math.floor(value / 60);
-    const seconds = Math.floor(value - minutes * 60);
+  calculateTime (value, padZero = false) {
+    let minutes = Math.floor(value / 60);
+    let seconds = Math.floor(value - minutes * 60);
+
+    if (padZero) {
+      if (minutes < 10) {
+        minutes = `0${minutes}`;
+      }
+      if (seconds < 10) {
+        seconds = `0${seconds}`;
+      }
+    }
+
     return `${minutes}:${seconds}`;
   }
 
@@ -30,7 +40,7 @@ export default class ControlSeek {
     });
 
     this.events.on('stateChange_time', ({key, value}) => {
-      const durationDisplay = this.calculateTime(value);
+      const durationDisplay = this.calculateTime(value, true);
       this.controlParent.querySelector('.es6-player__time').innerHTML = durationDisplay;
     });
   }
