@@ -43,6 +43,10 @@ export default class ControlSeek {
       const durationDisplay = this.calculateTime(value, true);
       this.controlParent.querySelector('.es6-player__time').innerHTML = durationDisplay;
     });
+
+    this.events.on('stateChange_seekposition', ({key, value}) => {
+      this.seekBar.value = value;
+    });
   }
 
   destroy () {
@@ -50,7 +54,7 @@ export default class ControlSeek {
   }
 
   render () {
-    const element = `<span class="es6-player__time">00:00</span><input class="es6-player__seekbar" type="range" id="seek-bar" value="0"><span class="es6-player__duration"></span>`;
+    const element = `<span class="es6-player__time">00:00</span><input autocomplete="off" class="es6-player__seekbar" type="range" id="seek-bar" value="0"><span class="es6-player__duration"></span>`;
     this.controlParent.innerHTML = this.controlParent.innerHTML + element;
   }
 };

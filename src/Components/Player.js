@@ -12,6 +12,7 @@ export default class Player {
       time: 0,
       duration: 0,
       progress: 0,
+      seekposition: 0,
     };
     /* TODO: Move me to higher level */
     const handler = function (context) {
@@ -44,6 +45,13 @@ export default class Player {
     });
 
     this.player.ontimeupdate = () => this.state.time = this.player.currentTime;
+
+    this.player.onended = () => {
+      this.state.status = 'pause';
+      this.state.time = 0;
+      this.seekposition = 0;
+      this.player.currentTime = 0;
+    };
 
     setTimeout(() => {
       this.state.duration = this.player.duration;
