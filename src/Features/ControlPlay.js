@@ -30,12 +30,18 @@ export default class ControlPlay {
       switch (value) {
         case 'play':
           this.state.playBtn = 'play';
+          this.playBtn.classList.remove('fa-play');
+          this.playBtn.classList.add('fa-pause');
           break;
         case 'pause':
           this.state.playBtn = 'pause';
+          this.playBtn.classList.remove('fa-pause');
+          this.playBtn.classList.add('fa-play');
           break;
         default:
           this.state.playBtn = 'pause';
+          this.playBtn.classList.remove('fa-pause');
+          this.playBtn.classList.add('fa-play');
       }
     });
   }
@@ -46,7 +52,7 @@ export default class ControlPlay {
   }
 
   render () {
-    const element = `<button type="button" id="play-pause">Play</button>`;
+    const element = `<button class="fa fa-play es6-player__play" type="button" id="play-pause"></button>`;
     this.controlParent.innerHTML = this.controlParent.innerHTML + element;
   }
 };
