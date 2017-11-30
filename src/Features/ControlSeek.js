@@ -35,7 +35,7 @@ export default class ControlSeek {
     });
 
     this.events.on('stateChange_duration', ({key, value}) => {
-      const durationDisplay = this.calculateTime(value);
+      const durationDisplay = this.calculateTime(value, true);
       this.controlParent.querySelector('.es6-player__duration').innerHTML = durationDisplay;
     });
 
